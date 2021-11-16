@@ -1,1 +1,1 @@
-define("MAIL", "sashaaderuyverp@gmail.com");
+define("MAIL", "sashaderuyverp@gmail.com");
