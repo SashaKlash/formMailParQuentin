@@ -4,11 +4,19 @@ require "./config.php";
 if (isset($_POST["name"]) && isset($_POST["mail"]) && isset($_POST["msg"])) {
     $name = strip_tags(trim($_POST["name"]));
     $mail = filter_var(strip_tags(trim($_POST["mail"])), FILTER_VALIDATE_EMAIL);
-    $mesg = strip_tags(trim($_POST["msg"]));
+    $msg = strip_tags(trim($_POST["msg"]));
 
     if ($name && $mail && $msg) {
-        mail($to,$subject,$msg);
-        
+        $to = MAIL;
+        $subject = "Message de la part de $name";
+        $message = $msg;
+        $header = [
+            "From" => $mail,
+            "Reply-to" => $mail,
+            "X-Mailer" => "PHP/" . phpversion()
+        ];
+
+        mail($to, $subject, $message, $header);
     } else {
         echo "Error!";
     }
