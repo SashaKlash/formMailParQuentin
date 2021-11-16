@@ -4,9 +4,10 @@ require "./config.php";
 if (isset($_POST["name"]) && isset($_POST["mail"]) && isset($_POST["msg"])) {
     $name = strip_tags(trim($_POST["name"]));
     $mail = filter_var(strip_tags(trim($_POST["mail"])), FILTER_VALIDATE_EMAIL);
-    $message = strip_tags(trim($_POST["msg"]));
+    $mesg = strip_tags(trim($_POST["msg"]));
 
-    if ($name && $mail && $message) {
+    if ($name && $mail && $msg) {
+        mail($to,$subject,$msg);
         
     } else {
         echo "Error!";
